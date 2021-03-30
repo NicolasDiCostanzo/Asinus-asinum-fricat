@@ -342,6 +342,8 @@
 "Assets/Scripts/Class/Liste.cs"
 "Assets/Scripts/Class/Mot.cs"
 "Assets/Scripts/Class/Nom.cs"
+"Assets/Scripts/Class/Verbe.cs"
+"Assets/Scripts/Factory_ZoneEntree.cs"
 "Assets/Scripts/GeneralManager.cs"
 -langversion:8.0
 

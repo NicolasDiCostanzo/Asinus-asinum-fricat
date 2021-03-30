@@ -60,6 +60,8 @@
     <Compile Include="Assets\Scripts\Class\Nom.cs" />
     <Compile Include="Assets\Scripts\Class\Mot.cs" />
     <Compile Include="Assets\Scripts\GeneralManager.cs" />
+    <Compile Include="Assets\Scripts\Factory_ZoneEntree.cs" />
+    <Compile Include="Assets\Scripts\Class\Verbe.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

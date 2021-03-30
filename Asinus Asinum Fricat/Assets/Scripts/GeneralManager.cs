@@ -22,6 +22,8 @@ public class GeneralManager : MonoBehaviour
         Infinitif,
         Parfait,
         Supin,
-        Locaution
+        Locaution,
+        Traduction,
+        Imparfait
     }
 }

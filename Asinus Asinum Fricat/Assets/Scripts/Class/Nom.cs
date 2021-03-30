@@ -11,14 +11,12 @@ public class Nom : Mot
     //Nom nom = new Nom("Aquqsda", "Aquae", "Aquaum", "Eau");
     //nom.champs[Champs.Nominatif] = "nouveau";
 
-    public new Dictionary<GeneralManager.Champs, string> champs = new Dictionary<GeneralManager.Champs, string>();
-
-    public Nom(string a_nominatif, string a_genitif, string a_genre, string a_traduction)
+    public Nom(string a_nominatif, string a_genitif, string a_genre, string a_traduction) 
+        : base (a_traduction)
     {
-        champs.Add(GeneralManager.Champs.Nominatif, a_nominatif);
-        champs.Add(GeneralManager.Champs.Genitif, a_genitif);
-        champs.Add(GeneralManager.Champs.Genre, a_genre);
-        traduction = a_traduction;
+        champs.Insert(0, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Nominatif, a_nominatif));
+        champs.Insert(1, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Genitif, a_genitif));
+        champs.Insert(2, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Genre, a_genre));
     }
 
     /// <summary>
@@ -28,14 +26,14 @@ public class Nom : Mot
     /// Item4 = traduction
     /// </summary>
     /// <returns></returns>
-    public Tuple<string, string, string, string> RetournerTousChamps()
-    {
-        string nominatif = champs[GeneralManager.Champs.Nominatif];
-        string genitif = champs[GeneralManager.Champs.Genitif];
-        string genre = champs[GeneralManager.Champs.Genre];
+    //public Tuple<string, string, string, string> RetournerTousChamps()
+    //{
+    //    string nominatif = champs[GeneralManager.Champs.Nominatif];
+    //    string genitif = champs[GeneralManager.Champs.Genitif];
+    //    string genre = champs[GeneralManager.Champs.Genre];
 
-        return Tuple.Create(nominatif, genitif, genre, traduction);
-    }
+    //    return Tuple.Create(nominatif, genitif, genre, traduction);
+    //}
 
     //public string RetournerNominatif() { return champs[GeneralManager.Champs.Nominatif]; }
     //public string RetournerGenitif() { return champs[GeneralManager.Champs.Genitif]; }
