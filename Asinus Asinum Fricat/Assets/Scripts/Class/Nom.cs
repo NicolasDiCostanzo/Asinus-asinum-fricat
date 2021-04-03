@@ -1,23 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using static GeneralManager;
 
-
+[Serializable]
 public class Nom : Mot
 {
-    //nominatif, genitif, genre, traduction
-
-    //Nom nom = new Nom("Aquqsda", "Aquae", "Aquaum", "Eau");
-    //nom.champs[Champs.Nominatif] = "nouveau";
-
-    public Nom(string a_nominatif, string a_genitif, string a_genre, string a_traduction) 
-        : base (a_traduction)
+    /// <summary>
+    ///  nominatif, genitif, genre, traduction
+    /// </summary>
+    /// <param name="a_nominatif"></param>
+    /// <param name="a_genitif"></param>
+    /// <param name="a_genre"></param>
+    /// <param name="a_traduction"></param>
+    /// 
+    public Nom(string a_nominatif, string a_genitif, string a_genre, string a_traduction)
+        : base(a_traduction)
     {
-        champs.Insert(0, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Nominatif, a_nominatif));
-        champs.Insert(1, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Genitif, a_genitif));
-        champs.Insert(2, new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Genre, a_genre));
+        champs.Insert(0, new KeyValuePair<Champs, string>(Champs.Nominatif, a_nominatif));
+        champs.Insert(1, new KeyValuePair<Champs, string>(Champs.Genitif, a_genitif));
+        champs.Insert(2, new KeyValuePair<Champs, string>(Champs.Genre, a_genre));
     }
+
+
 
     /// <summary>
     /// Item1 = nominatif,

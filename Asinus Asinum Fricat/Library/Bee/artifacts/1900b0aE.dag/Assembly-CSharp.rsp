@@ -339,12 +339,13 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
-"Assets/Scripts/Class/Liste.cs"
+"Assets/Scripts/Class/Button_Creer.cs"
+"Assets/Scripts/Class/ListeDeMot.cs"
 "Assets/Scripts/Class/Mot.cs"
 "Assets/Scripts/Class/Nom.cs"
 "Assets/Scripts/Class/Verbe.cs"
-"Assets/Scripts/Factory_ZoneEntree.cs"
 "Assets/Scripts/GeneralManager.cs"
+"Assets/Scripts/Managers/ListeManager.cs"
 -langversion:8.0
 
 /deterministic

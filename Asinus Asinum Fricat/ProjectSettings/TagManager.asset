@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Nom
+  - Verbe
+  - Adjectif1
+  - Adjectif2
+  - Locution
   layers:
   - Default
   - TransparentFX

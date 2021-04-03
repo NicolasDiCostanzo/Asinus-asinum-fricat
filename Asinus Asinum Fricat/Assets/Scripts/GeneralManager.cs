@@ -1,14 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GeneralManager : MonoBehaviour
 {
-    private void Start()
+    [Serializable]
+    public enum TypeDeMot
     {
-
+        Nom,
+        Adjectif1,
+        Adjectif2,
+        Verbe,
+        Locution
     }
 
+    [Serializable]
     public enum Champs
     {
         Nominatif,
@@ -22,7 +29,7 @@ public class GeneralManager : MonoBehaviour
         Infinitif,
         Parfait,
         Supin,
-        Locaution,
+        Locution,
         Traduction,
         Imparfait
     }
