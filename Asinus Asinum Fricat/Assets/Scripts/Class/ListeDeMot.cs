@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.Json;
+//using System.Text.Json;
 using UnityEngine;
 
 [Serializable]
@@ -23,16 +23,16 @@ public class ListeDeMot
 
     public void JsonSauvegarde()
     {
-        var options = new JsonSerializerOptions
-        {
-            WriteIndented = true
-        };
+        //var options = new JsonSerializerOptions
+        //{
+        //    WriteIndented = true
+        //};
 
-        string json = JsonSerializer.Serialize(this, GetType(), options);
+        //string json = JsonSerializer.Serialize(this, GetType(), options);
 
-        //string json = JsonUtility.ToJson(this, true);
-        //DebugAfficherListeDeMots();
-        Debug.Log(json);
+        ////string json = JsonUtility.ToJson(this, true);
+        ////DebugAfficherListeDeMots();
+        //Debug.Log(json);
     }
 
     public void DebugAfficherListeDeMots()

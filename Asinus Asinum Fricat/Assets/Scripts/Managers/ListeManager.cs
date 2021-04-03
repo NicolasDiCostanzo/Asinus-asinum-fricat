@@ -8,10 +8,10 @@ using static GeneralManager;
 public class ListeManager : MonoBehaviour
 {
     [SerializeField] GameObject motPrefab;
-    [SerializeField] GameObject blocTypeDeMot;
+    [SerializeField] GameObject blocTypeDeMotPrefab;
     [SerializeField] GameObject inputFieldPrefab;
-    Transform zoneMilieu;
-    [SerializeField] GameObject colonneTitre;
+    [SerializeField] GameObject titreBlocPrefab;
+    public static Transform zoneMilieu;
 
     void Start()
     {
@@ -28,26 +28,31 @@ public class ListeManager : MonoBehaviour
                 mot = new Nom("", "", "", "");
                 break;
             case TypeDeMot.Adjectif1:
+                mot = new Adjectif1("", "", "", "");
                 break;
             case TypeDeMot.Adjectif2:
+                mot = new Adjectif2("", "", "", "", "");
                 break;
             case TypeDeMot.Verbe:
                 mot = new Verbe("", "", "", "", "", "");
                 break;
             case TypeDeMot.Locution:
+                mot = new Locution("", "");
                 break;
         }
 
 
-        GameObject parentMots = GameObject.Find("Bloc " + typeDeMot);
+        GameObject bloc = GameObject.Find("Bloc " + typeDeMot);
 
-        if (parentMots == null) parentMots = AjoutBloc(typeDeMot, mot);
-        else parentMots = GameObject.Find("Bloc " + typeDeMot);
+        if (bloc == null) bloc = AjoutBloc(typeDeMot, mot);
+        else bloc = GameObject.Find("Bloc " + typeDeMot);
 
-        GameObject zoneEntrees = GameObject.Find(parentMots.name + "/Bloc Champ/Zone entrees");
+        GameObject zoneEntrees = GameObject.Find(bloc.name + "/Zone entrees");
         GameObject instanceMot = Instantiate(motPrefab);
+
         instanceMot.name = typeDeMot.ToString();
         instanceMot.tag = typeDeMot.ToString();
+
         instanceMot.transform.SetParent(zoneEntrees.transform, false);
 
         for (int i = 0; i < mot.champs.Count; i++)
@@ -56,35 +61,33 @@ public class ListeManager : MonoBehaviour
             inputFieldInstance.transform.SetParent(instanceMot.transform, false);
             inputFieldInstance.name = "Inputfield " + typeDeMot + mot.champs[i].ToString();
             inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].ToString();
+
+
+            //Pour charger liste existante avec ses valeurs : 
+            //inputFieldInstance.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "salut c'est moi";
         }
+        Debug.Log(zoneEntrees.transform.parent.name);
+        Debug.Log(zoneEntrees.name);
+        zoneEntrees.GetComponent<AdapterTailleParent>().UpdateCanvas();
     }
 
     GameObject AjoutBloc(TypeDeMot typeDeMot, Mot a_mot)
     {
-        GameObject instanceBlocTypeDeMot = Instantiate(blocTypeDeMot);
+        GameObject instanceBlocTypeDeMot = Instantiate(blocTypeDeMotPrefab);
         instanceBlocTypeDeMot.transform.SetParent(zoneMilieu, false);
         instanceBlocTypeDeMot.name = "Bloc " + typeDeMot;
 
-        //if (a_mot != null)
-        //{
-        //    int nbChamps = a_mot.champs.Count;
+        if (a_mot != null)
+        {
+            string colonneNom = typeDeMot.ToString();
+            Transform parentMot = GameObject.Find(instanceBlocTypeDeMot.name + "/Zone entrees").transform;
 
-        //    Transform parentMot = GameObject.Find(instanceBlocTypeDeMot.name + "/Bloc Champ/Zone entrees").transform;
-        //    parentMot.GetComponent<GridLayoutGroup>().constraintCount = nbChamps;
+            GameObject titreBlocInstance = Instantiate(titreBlocPrefab);
+            titreBlocInstance.transform.SetParent(parentMot.transform, false);
+            titreBlocInstance.name = colonneNom;
+            titreBlocInstance.GetComponent<TextMeshProUGUI>().text = colonneNom;
 
-        //    for (int i = 0; i < nbChamps; i++)
-        //    {
-        //        Debug.Log(a_mot.champs[i].ToString());
-
-        //        string colonneNom = a_mot.champs[i].ToString();
-        //        Debug.Log(colonneNom);
-
-        //        GameObject colonneTitreInstance = Instantiate(colonneTitre);
-        //        colonneTitreInstance.transform.SetParent(parentMot.transform, false);
-        //        colonneTitreInstance.name = colonneNom;
-        //        colonneTitre.GetComponent<TextMeshProUGUI>().text = colonneNom;
-        //    }
-        //}
+        }
 
         return GameObject.Find("Bloc " + typeDeMot);
     }
@@ -135,13 +138,16 @@ public class ListeManager : MonoBehaviour
                     motEnregistre = new Nom(champs[0], champs[1], champs[2], champs[3]);
                     break;
                 case TypeDeMot.Adjectif1:
+                    motEnregistre = new Adjectif1(champs[0], champs[1], champs[2], champs[3]);
                     break;
                 case TypeDeMot.Adjectif2:
+                    motEnregistre = new Adjectif2(champs[0], champs[1], champs[2], champs[3], champs[4]);
                     break;
                 case TypeDeMot.Verbe:
                     motEnregistre = new Verbe(champs[0], champs[1], champs[2], champs[3], champs[4], champs[5]);
                     break;
                 case TypeDeMot.Locution:
+                    motEnregistre = new Locution(champs[0], champs[1]);
                     break;
             }
 
