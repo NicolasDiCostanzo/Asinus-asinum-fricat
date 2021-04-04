@@ -21,12 +21,11 @@ public Mot(string a_traduction)
 
     public void DebugAfficherMot()
     {
-        string debugAAfficher = "";
+        string debugAAfficher = GetType().UnderlyingSystemType.Name + " :\n";
 
-        for (int i = 0; i < champs.Count; i++)
-            debugAAfficher += "--" + champs[i].Key + " " + champs[i].Value;
+        for (int i = 0; i < champs.Count; i++) debugAAfficher += champs[i].Key + "->" + champs[i].Value + "\n";
 
-        Debug.Log("Version : " + version + " " + debugAAfficher);
+        Debug.Log(debugAAfficher + "Version : " + version + " ");
     }
 
 }

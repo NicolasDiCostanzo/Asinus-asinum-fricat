@@ -138,6 +138,7 @@ public class ListeManager : MonoBehaviour
             }
         }
 
+        liste.DebugAfficherListeDeMots();
         liste.JsonSauvegarde();
     }
 
