@@ -4,7 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static GeneralManager;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 public class ListeManager : MonoBehaviour
 {
     [SerializeField] GameObject motPrefab;
@@ -16,6 +17,7 @@ public class ListeManager : MonoBehaviour
     void Start()
     {
         zoneMilieu = GameObject.Find("Zone milieu").transform;
+        
     }
 
     /// <summary>
@@ -138,7 +140,6 @@ public class ListeManager : MonoBehaviour
             }
         }
 
-        liste.DebugAfficherListeDeMots();
         liste.JsonSauvegarde();
     }
 
