@@ -12,7 +12,8 @@ public class GeneralManager : MonoBehaviour
         Adjectif1,
         Adjectif2,
         Verbe,
-        Locution
+        Locution,
+        Default
     }
 
     [Serializable]
