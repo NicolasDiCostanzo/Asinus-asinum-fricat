@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GeneralManager : MonoBehaviour
 {
+    public static string folderName = "/Listes/";
+    public static string directory = Application.persistentDataPath + folderName;
+
     [Serializable]
     public enum TypeDeMot
     {

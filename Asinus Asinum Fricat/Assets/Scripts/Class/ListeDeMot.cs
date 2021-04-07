@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 //using System.Text.Json;
 //using Newtonsoft.Json;
@@ -33,8 +34,18 @@ public class ListeDeMot
         };
 
         string json = JsonSerializer.Serialize(this, options);
+        string directory = GeneralManager.directory;
 
+        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+        File.WriteAllText(directory + titre + ".txt", json);
+
+        Debug.Log(directory);
         Debug.Log(json);
+
+        //ListeDeMot liste2 = JsonSerializer.Deserialize<ListeDeMot>(json);
+        //Debug.Log(liste2.mots.Count);
+        //liste2.DebugAfficherListeDeMots();
     }
 
     public void DebugAfficherListeDeMots()

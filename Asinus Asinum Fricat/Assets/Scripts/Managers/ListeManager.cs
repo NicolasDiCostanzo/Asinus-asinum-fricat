@@ -14,11 +14,7 @@ public class ListeManager : MonoBehaviour
     [SerializeField] GameObject titreBlocPrefab;
     public static Transform zoneMilieu;
 
-    void Start()
-    {
-        zoneMilieu = GameObject.Find("Zone milieu").transform;
-        
-    }
+    void Start() { zoneMilieu = GameObject.Find("Zone milieu").transform; }
 
     /// <summary>
     /// Pour chargement liste existante
@@ -61,7 +57,7 @@ public class ListeManager : MonoBehaviour
 
             inputFieldInstance.name = "Inputfield " + typeDeMot + mot.champs[i].ToString();
 
-            if (chargementListeExistante) inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = mot.champs[i].Value;
+            if (chargementListeExistante) inputFieldInstance.GetComponent<TMP_InputField>().text = mot.champs[i].Value;
             else                          inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].ToString();
         }
 
@@ -119,11 +115,9 @@ public class ListeManager : MonoBehaviour
 
     public void SauvegarderListe()
     {
-        string inputFieldHierarchie = "Input/Text Area/Text";
-
-        string titre = GameObject.Find("Titre " + inputFieldHierarchie).GetComponent<TextMeshProUGUI>().text;
-        string theme = GameObject.Find("Theme " + inputFieldHierarchie).GetComponent<TextMeshProUGUI>().text;
-        string commentaire = GameObject.Find("Commentaire " + inputFieldHierarchie).GetComponent<TextMeshProUGUI>().text;
+        string titre = GameObject.Find("Titre Input").GetComponent<TMP_InputField>().text;
+        string theme = GameObject.Find("Theme Input").GetComponent<TMP_InputField>().text;
+        string commentaire = GameObject.Find("Commentaire Input").GetComponent<TMP_InputField>().text;
 
         ListeDeMot liste = new ListeDeMot(titre, theme, commentaire);
 
@@ -152,7 +146,7 @@ public class ListeManager : MonoBehaviour
             List<string> champs = new List<string>();
 
             for (int i = 0; i < mot.transform.childCount; i++)
-                champs.Add(mot.transform.GetChild(i).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text);
+                champs.Add(mot.transform.GetChild(i).GetComponent<TMP_InputField>().text);
 
             Mot motEnregistre = null;
 
