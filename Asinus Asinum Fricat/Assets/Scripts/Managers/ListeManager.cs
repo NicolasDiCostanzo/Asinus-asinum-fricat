@@ -14,7 +14,15 @@ public class ListeManager : MonoBehaviour
     [SerializeField] GameObject titreBlocPrefab;
     public static Transform zoneMilieu;
 
-    void Start() { zoneMilieu = GameObject.Find("Zone milieu").transform; }
+    TMP_InputField titreTMP, themeTMP, commentaireTMP;
+
+    void Start() { 
+        zoneMilieu = GameObject.Find("Zone milieu").transform;
+
+        titreTMP = GameObject.Find("Titre Input").GetComponent<TMP_InputField>();
+        themeTMP = GameObject.Find("Theme Input").GetComponent<TMP_InputField>();
+        commentaireTMP = GameObject.Find("Commentaire Input").GetComponent<TMP_InputField>();
+    }
 
     /// <summary>
     /// Pour chargement liste existante
@@ -115,11 +123,7 @@ public class ListeManager : MonoBehaviour
 
     public void SauvegarderListe()
     {
-        string titre = GameObject.Find("Titre Input").GetComponent<TMP_InputField>().text;
-        string theme = GameObject.Find("Theme Input").GetComponent<TMP_InputField>().text;
-        string commentaire = GameObject.Find("Commentaire Input").GetComponent<TMP_InputField>().text;
-
-        ListeDeMot liste = new ListeDeMot(titre, theme, commentaire);
+        ListeDeMot liste = new ListeDeMot(titreTMP.text, themeTMP.text, commentaireTMP.text);
 
         liste.mots.Clear();
 
@@ -174,7 +178,36 @@ public class ListeManager : MonoBehaviour
                 motEnregistre.version = a_version;
                 a_liste.mots.Add(motEnregistre);
             }
+        }
+    }
 
+
+    void TestChargerListe()
+    {
+        ListeDeMot liste = new ListeDeMot("titre","theme","commentaire");
+
+        liste.mots.Add(new Locution("loc", "trad"));
+        liste.mots.Add(new Locution("loc2", "trad2"));
+        liste.mots.Add(new Nom("nom", "nom", "genr", "tradcut"));
+        liste.mots.Add(new Nom("nom2", "nom2", "genr2", "tradcut2"));
+        liste.mots.Add(new Verbe("v", "p2", "inf", "imp", "sup", "traduction"));
+        liste.mots.Add(new Verbe("v2", "p22", "inf2", "imp2", "sup2", "traduction2"));
+        liste.mots.Add(new Adjectif1("v2", "p22", "inf2", "imp2"));
+
+        ChargerListe(liste);
+    }
+
+    public void ChargerListe(ListeDeMot a_liste)
+    {
+        ListeDeMot liste = a_liste;
+
+        titreTMP.text = liste.titre;
+        themeTMP.text = liste.theme;
+        commentaireTMP.text = liste.commentaire;
+
+        foreach (Mot mot in liste.mots)
+        {
+            AjoutChamp(mot);
         }
     }
 }
