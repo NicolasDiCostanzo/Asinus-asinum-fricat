@@ -133,6 +133,18 @@ MonoBehaviour:
           m_StringArgument: Interrogation
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -7666309404446436379}
+        m_TargetAssemblyTypeName: AssocierStructureListe, Assembly-CSharp
+        m_MethodName: PasserCetteListeAuGeneralManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5467382381889432982
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +157,7 @@ GameObject:
   - component: {fileID: 3913108740960940008}
   - component: {fileID: 6298952811021247888}
   - component: {fileID: 1363090911719918316}
+  - component: {fileID: 2748774052656363569}
   m_Layer: 5
   m_Name: Modification bouton
   m_TagString: Untagged
@@ -266,6 +279,43 @@ MonoBehaviour:
           m_StringArgument: Liste
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2748774052656363569}
+        m_TargetAssemblyTypeName: ChangerEtat, Assembly-CSharp
+        m_MethodName: f_ChangerEtat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -7666309404446436379}
+        m_TargetAssemblyTypeName: AssocierStructureListe, Assembly-CSharp
+        m_MethodName: PasserCetteListeAuGeneralManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2748774052656363569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467382381889432982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ee75f441ef874390dfcc3c17ec71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nouvelleEtat: 2
 --- !u!1 &5525045863368685365
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +541,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commentairePrefab: {fileID: 4110686704173604983, guid: d0f471585e553e64e9c657552f9b1301, type: 3}
-  commentaire: 
+  listeAssociee:
+    titre: 
+    theme: 
+    commentaire: 
+    mots: []
 --- !u!114 &4206953809026811163
 MonoBehaviour:
   m_ObjectHideFlags: 0

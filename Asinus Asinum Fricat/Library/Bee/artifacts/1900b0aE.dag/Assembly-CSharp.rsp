@@ -347,10 +347,13 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/Scripts/Affichage listes/AdapterTailleParent.cs"
-"Assets/Scripts/Affichage listes/AfficherCommentaire.cs"
 "Assets/Scripts/Affichage listes/AfficherListes.cs"
+"Assets/Scripts/Affichage listes/AssocierStructureListe.cs"
+"Assets/Scripts/AjouterTypeDeMot.cs"
+"Assets/Scripts/ChangerEtat.cs"
 "Assets/Scripts/ChargerScene.cs"
 "Assets/Scripts/Class/Button_Creer.cs"
+"Assets/Scripts/Class/ClassTest.cs"
 "Assets/Scripts/Class/Enfants de mot/Adjectif1.cs"
 "Assets/Scripts/Class/Enfants de mot/Adjectif2.cs"
 "Assets/Scripts/Class/Enfants de mot/Locution.cs"
@@ -360,7 +363,9 @@
 "Assets/Scripts/Class/Mot.cs"
 "Assets/Scripts/DestroyThisGameobject.cs"
 "Assets/Scripts/GeneralManager.cs"
+"Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
+"Assets/Scripts/SuppressionParent.cs"
 -langversion:8.0
 
 /deterministic

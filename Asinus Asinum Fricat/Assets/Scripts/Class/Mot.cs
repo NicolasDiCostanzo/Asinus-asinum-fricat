@@ -1,26 +1,30 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static GeneralManager;
 
 [Serializable]
 public class Mot
 {
-    public bool version { get; set; }
+    public bool version;
+    public TypeDeMot type;
+
     public bool dejaInterroge { get; set; }
+    public List<Champ> champs = new List<Champ>();
 
-    public List<KeyValuePair<GeneralManager.Champs, string>> champs = new List<KeyValuePair<GeneralManager.Champs, string>>();
-
-    public Mot(string a_traduction)
+    public Mot(string a_traduction, bool version)
     {
         dejaInterroge = false;
-        champs.Add(new KeyValuePair<GeneralManager.Champs, string>(GeneralManager.Champs.Traduction, a_traduction));
+        champs.Add(new Champ(Champs.Traduction, a_traduction));
+
+        this.version = version;
     }
 
     public Mot() { dejaInterroge = false; }
 
     public void DebugAfficherMot()
     {
-        string debugAAfficher = GetType().UnderlyingSystemType.Name + " :\n";
+        string debugAAfficher = type + " :\n";
 
         for (int i = 0; i < champs.Count; i++) debugAAfficher += champs[i].Key + "->" + champs[i].Value + "\n";
 

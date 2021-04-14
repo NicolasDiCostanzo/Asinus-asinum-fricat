@@ -13,22 +13,12 @@ public class AfficherListes : MonoBehaviour
         Transform parent = GameObject.Find("Zone affichage").transform;
         string directory = GeneralManager.directory;
 
-        //ListeDeMot _liste = new ListeDeMot("titre", "theme", "comm");
-        //AfficherListe(_liste, parent);
-        //ListeDeMot _liste2 = new ListeDeMot("titre2", "theme3", "commentaire");
-        //AfficherListe(_liste2, parent);
-
         if (Directory.Exists(directory))
         {
-            int i = 0;
-
             foreach (string file in Directory.GetFiles(directory))
             {
-                i++;
                 string listeJson = File.ReadAllText(file);
-
-                ListeDeMot _liste = new ListeDeMot("titre " + i, "theme", "comm");
-
+                ListeDeMot _liste = JsonUtility.FromJson<ListeDeMot>(listeJson);
                 AfficherListe(_liste, parent);
             }
 
@@ -38,10 +28,13 @@ public class AfficherListes : MonoBehaviour
     void AfficherListe(ListeDeMot a_liste, Transform a_parent)
     {
         GameObject afficherListe_instance = Instantiate(affichageListePrefab);
+
         afficherListe_instance.transform.SetParent(a_parent, false);
         afficherListe_instance.name = a_liste.titre;
+
         afficherListe_instance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = a_liste.titre;
         afficherListe_instance.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = a_liste.theme;
-        afficherListe_instance.GetComponent<AfficherCommentaire>().commentaire = a_liste.commentaire;
+
+        afficherListe_instance.GetComponent<AssocierStructureListe>().listeAssociee = a_liste;
     }
 }

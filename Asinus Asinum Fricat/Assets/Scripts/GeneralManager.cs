@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,12 +7,16 @@ public class GeneralManager : MonoBehaviour
 {
     public static string folderName = "/Listes/";
     public static string directory;
-    public static ListeDeMot liste;
+    public static ListeDeMot _gmListe;
 
     [SerializeField] GameObject pausePanel;
     GameObject pausePanel_instance;
 
     public static GeneralManager instance;
+
+    public static Etat etat = Etat.Null;
+
+
 
     void Awake()
     {
@@ -34,7 +36,7 @@ public class GeneralManager : MonoBehaviour
 
     void AfficherPause()
     {
-        if((SceneManager.GetActiveScene().name != "Menu principal") && (pausePanel_instance == null))
+        if ((SceneManager.GetActiveScene().name != "Menu principal") && (pausePanel_instance == null))
             pausePanel_instance = Instantiate(pausePanel);
     }
 
@@ -66,6 +68,13 @@ public class GeneralManager : MonoBehaviour
         Locution,
         Traduction,
         Imparfait
+    }
+
+    public enum Etat
+    {
+        Null,
+        Creation,
+        Modification
     }
 
     public void QuitterApplication()
