@@ -13,24 +13,26 @@ public class AfficherListes : MonoBehaviour
         Transform parent = GameObject.Find("Zone affichage").transform;
         string directory = GeneralManager.directory;
 
-        ListeDeMot _liste = new ListeDeMot("titre", "theme", "comm");
-        AfficherListe(_liste, parent);
-        ListeDeMot _liste2 = new ListeDeMot("titre2", "theme3", "commentaire");
-        AfficherListe(_liste2, parent);
+        //ListeDeMot _liste = new ListeDeMot("titre", "theme", "comm");
+        //AfficherListe(_liste, parent);
+        //ListeDeMot _liste2 = new ListeDeMot("titre2", "theme3", "commentaire");
+        //AfficherListe(_liste2, parent);
 
-        //if (Directory.Exists(directory))
-        //{
+        if (Directory.Exists(directory))
+        {
+            int i = 0;
 
-        //    foreach (string file in Directory.GetFiles(directory))
-        //    {
-        //        string listeJson = File.ReadAllText(file);
+            foreach (string file in Directory.GetFiles(directory))
+            {
+                i++;
+                string listeJson = File.ReadAllText(file);
 
-        //        ListeDeMot _liste = new ListeDeMot("titre", "theme", "comm");
+                ListeDeMot _liste = new ListeDeMot("titre " + i, "theme", "comm");
 
-        //        AfficherListe(_liste, parent);
-        //    }
+                AfficherListe(_liste, parent);
+            }
 
-        //}
+        }
     }
 
     void AfficherListe(ListeDeMot a_liste, Transform a_parent)

@@ -38,7 +38,7 @@ public class ListeDeMot
 
         File.WriteAllText(directory + titre + ".txt", json);
 
-        //Debug.Log(directory);
+        Debug.Log(directory);
         //Debug.Log(json);
         //ListeDeMot liste2 = JsonSerializer.Deserialize<ListeDeMot>(json);//JsonUtility.FromJson<ListeDeMot>(json);
         ////Debug.Log(liste2.mots.Count);

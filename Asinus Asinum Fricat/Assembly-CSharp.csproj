@@ -57,18 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Class\ListeDeMot.cs" />
-    <Compile Include="Assets\AdapterTailleParent.cs" />
+    <Compile Include="Assets\Scripts\Affichage listes\AdapterTailleParent.cs" />
     <Compile Include="Assets\Scripts\Class\Button_Creer.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Nom.cs" />
     <Compile Include="Assets\Scripts\Class\Mot.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Locution.cs" />
-    <Compile Include="Assets\AfficherCommentaire.cs" />
+    <Compile Include="Assets\Scripts\Affichage listes\AfficherCommentaire.cs" />
     <Compile Include="Assets\Scripts\GeneralManager.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Adjectif1.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\AfficherListes.cs" />
     <Compile Include="Assets\Scripts\Managers\ListeManager.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Verbe.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Adjectif2.cs" />
+    <Compile Include="Assets\Scripts\ChargerScene.cs" />
+    <Compile Include="Assets\Scripts\DestroyThisGameobject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

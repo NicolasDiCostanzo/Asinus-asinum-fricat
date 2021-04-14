@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu principal.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Consultation listes.unity
+    guid: c0ae9b0ea3b42da499c5544b9e23d513
+  - enabled: 1
+    path: Assets/Scenes/Interrogation.unity
+    guid: c85bf072af832874cb01e1d38ceb25e1
+  - enabled: 1
+    path: Assets/Scenes/Liste.unity
+    guid: 625b84ca1ffdb1f4b9a9e1d29fb97f24
   m_configObjects: {}

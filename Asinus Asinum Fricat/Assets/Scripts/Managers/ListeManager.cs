@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static GeneralManager;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static GeneralManager;
+
 public class ListeManager : MonoBehaviour
 {
     [SerializeField] GameObject motPrefab;
