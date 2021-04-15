@@ -5,8 +5,8 @@ using static GeneralManager;
 public class InterrogationManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI motsAFaire_tmp, motsFaits_tmp;
-    [SerializeField] GameObject inputFieldPrefab, affichageBonneReponse;
-    GameObject canvas;
+    [SerializeField] GameObject inputFieldPrefab, affichageBonneReponse, finDeListePanel;
+    Transform canvas;
     ListeDeMot liste;
 
     int tailleListe = 0, motsFaits = 0, motsJustes = 0;
@@ -19,11 +19,13 @@ public class InterrogationManager : MonoBehaviour
         tailleListe = liste.mots.Count;
 
         container = GameObject.Find("Container");
-        canvas = GameObject.Find("Canvas");
+        canvas = GameObject.Find("Canvas").transform;
 
         TirageAuSort();
 
         UI_update();
+
+        Debug.Log(gameObject.name);
     }
 
     private void Update() { if (Input.GetKeyDown(KeyCode.Space)) TirageAuSort(); }
@@ -40,7 +42,7 @@ public class InterrogationManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Fin de liste");
+            AfficherPanelFinDeListe();
             return;
         }
 
@@ -131,14 +133,14 @@ public class InterrogationManager : MonoBehaviour
     {
         Debug.Log("mauvaise reponse");
         UI_update();
-        AfficherBonneReponse();
         TirageAuSort();
+        AfficherBonneReponse();
     }
 
     void AfficherBonneReponse()
     {
         GameObject afficherBonneReponse_instance = Instantiate(affichageBonneReponse);
-        afficherBonneReponse_instance.transform.SetParent(canvas.transform, false);
+        afficherBonneReponse_instance.transform.SetParent(canvas, false);
 
         Mot mot = liste.mots[r];
 
@@ -160,6 +162,18 @@ public class InterrogationManager : MonoBehaviour
     {
         motsAFaire_tmp.text = motsFaits + "/" + tailleListe;
         motsFaits_tmp.text = motsJustes + "/" + motsFaits;
+    }
+
+    void AfficherPanelFinDeListe()
+    {
+        GameObject panelFinDeListe_instance = Instantiate(finDeListePanel);
+        panelFinDeListe_instance.transform.SetParent(canvas, false);
+
+        //RectTransform rectTransform = panelFinDeListe_instance.GetComponent<RectTransform>();
+        ////panelFinDeListe_instance.transform.position = new Vector3(rectTransform.sizeDelta.x / 2, rectTransform.sizeDelta.y / 2, 0);
+        //rectTransform.anchorMin = new Vector2(.5f, 0);
+        //rectTransform.anchorMax = new Vector2(.5f, 0);
+        //rectTransform.pivot = new Vector2(.5f, .5f);
     }
 
 }

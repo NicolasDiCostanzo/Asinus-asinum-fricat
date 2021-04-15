@@ -50,7 +50,6 @@ public class ListeManager : MonoBehaviour
     public void AjouterInputsField(Mot mot, bool chargementListeExistante)
     {
         string typeDeMot = mot.type.ToString();
-        Debug.Log(typeDeMot);
         GameObject bloc = GameObject.Find("Bloc " + typeDeMot);
 
         if (bloc == null) bloc = AjoutBloc(typeDeMot, mot);
@@ -113,8 +112,6 @@ public class ListeManager : MonoBehaviour
         GameObject instanceBlocTypeDeMot = Instantiate(blocTypeDeMotPrefab);
         instanceBlocTypeDeMot.transform.SetParent(zoneMilieu, false);
         instanceBlocTypeDeMot.name = "Bloc " + typeDeMot;
-
-        Debug.Log(a_mot.version);
 
         instanceBlocTypeDeMot.GetComponentInChildren<Toggle>().isOn = a_mot.version;
 

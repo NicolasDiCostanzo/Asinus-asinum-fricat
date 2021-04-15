@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class AssocierStructureListe : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -9,7 +7,7 @@ public class AssocierStructureListe : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] GameObject commentairePrefab;
     GameObject commentairePanel_instance;
     [HideInInspector] public ListeDeMot listeAssociee;
-    
+
     public void CreerPanelCommentaire()
     {
         Transform canvasTransform = GameObject.Find("Canvas").transform;
@@ -21,7 +19,7 @@ public class AssocierStructureListe : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CreerPanelCommentaire();
+        if (listeAssociee.commentaire != "") CreerPanelCommentaire();
     }
 
     public void OnPointerExit(PointerEventData eventData)

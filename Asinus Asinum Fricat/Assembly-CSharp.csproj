@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\AjouterTypeDeMot.cs" />
     <Compile Include="Assets\Scripts\ChangerEtat.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Nom.cs" />
+    <Compile Include="Assets\Scripts\Class\ClassTest.cs" />
     <Compile Include="Assets\Scripts\Class\Mot.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Locution.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\AssocierStructureListe.cs" />
@@ -75,7 +76,8 @@
     <Compile Include="Assets\Scripts\SuppressionParent.cs" />
     <Compile Include="Assets\Scripts\Managers\InterrogationManager.cs" />
     <Compile Include="Assets\Scripts\DestroyThisGameobject.cs" />
-    <Compile Include="Assets\Scripts\Class\ClassTest.cs" />
+    <Compile Include="Assets\Scripts\InputNavigator.cs" />
+    <Compile Include="Assets\SupprimerListe.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

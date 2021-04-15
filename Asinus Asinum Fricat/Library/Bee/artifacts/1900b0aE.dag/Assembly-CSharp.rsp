@@ -363,9 +363,11 @@
 "Assets/Scripts/Class/Mot.cs"
 "Assets/Scripts/DestroyThisGameobject.cs"
 "Assets/Scripts/GeneralManager.cs"
+"Assets/Scripts/InputNavigator.cs"
 "Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
 "Assets/Scripts/SuppressionParent.cs"
+"Assets/SupprimerListe.cs"
 -langversion:8.0
 
 /deterministic

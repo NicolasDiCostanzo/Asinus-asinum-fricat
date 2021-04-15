@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
-using System.Text.Json;
 using TMPro;
+using UnityEngine;
 public class AfficherListes : MonoBehaviour
 {
     [SerializeField] GameObject affichageListePrefab;
@@ -32,8 +29,8 @@ public class AfficherListes : MonoBehaviour
         afficherListe_instance.transform.SetParent(a_parent, false);
         afficherListe_instance.name = a_liste.titre;
 
-        afficherListe_instance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = a_liste.titre;
-        afficherListe_instance.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = a_liste.theme;
+        afficherListe_instance.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = a_liste.titre;
+        afficherListe_instance.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = a_liste.theme;
 
         afficherListe_instance.GetComponent<AssocierStructureListe>().listeAssociee = a_liste;
     }
