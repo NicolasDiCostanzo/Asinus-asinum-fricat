@@ -160,8 +160,6 @@ public class ListeManager : MonoBehaviour
 
         bool succesSauvegarde = liste.JsonSauvegarde();
 
-        Debug.Log(succesSauvegarde + " " + sauvegardeAutomatique);
-
         if (succesSauvegarde && !sauvegardeAutomatique)
         {
             GameObject informationReussiteSauvegarde_instance = Instantiate(informationReussiteSauvegarde);

@@ -1,7 +1,6 @@
 using System;
 using static GeneralManager;
 
-[Serializable]
 public class Verbe : Mot
 {
     public Verbe(string a_present1, string a_present2, string a_infinitif, string a_imparfait, string a_supin, string a_traduction, bool version)

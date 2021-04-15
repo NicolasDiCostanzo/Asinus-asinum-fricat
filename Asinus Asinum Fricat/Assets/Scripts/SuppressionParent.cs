@@ -8,5 +8,7 @@ public class SuppressionParent : MonoBehaviour
 
         if (nbrEntrees - 1 == 0) Destroy(transform.parent.parent.parent.gameObject);
         else Destroy(transform.parent.gameObject);
+
+        GetComponentInParent<AdapterTailleParent>().UpdateCanvas();
     }
 }

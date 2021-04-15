@@ -9,7 +9,7 @@ public class InterrogationManager : MonoBehaviour
     Transform canvas;
     ListeDeMot liste;
 
-    int tailleListe = 0, motsFaits = 0, motsJustes = 0;
+    int tailleListe = 0, motsFaits = 0, motsJustes = 0, r = 0;
 
     GameObject container;
 
@@ -25,10 +25,6 @@ public class InterrogationManager : MonoBehaviour
 
         UI_update();
     }
-
-    private void Update() { if (Input.GetKeyDown(KeyCode.Space)) TirageAuSort(); }
-
-    int r = 0;
 
     public void TirageAuSort()
     {
@@ -114,7 +110,9 @@ public class InterrogationManager : MonoBehaviour
         motsJustes++;
 
         UI_update();
-        TirageAuSort();
+
+        if (motsFaits < tailleListe) TirageAuSort();
+        else AfficherPanelFinDeListe();
     }
 
     void MauvaiseReponse()

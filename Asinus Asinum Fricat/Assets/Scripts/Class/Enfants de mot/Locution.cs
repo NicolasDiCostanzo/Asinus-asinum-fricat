@@ -1,8 +1,6 @@
 using System;
 using static GeneralManager;
 
-
-[Serializable]
 public class Locution : Mot
 {
     public Locution(string a_locution, string a_traduction, bool version)

@@ -1,7 +1,6 @@
 using System;
 using static GeneralManager;
 
-[Serializable]
 public class Nom : Mot
 {
     public Nom(string a_nominatif, string a_genitif, string a_genre, string a_traduction, bool version)

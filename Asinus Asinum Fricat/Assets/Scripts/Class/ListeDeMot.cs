@@ -24,7 +24,6 @@ public class ListeDeMot
         string directory = GeneralManager._directory;
         string json = JsonUtility.ToJson(this, true);
 
-
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
         string fileDirectory = GeneralManager._directory + titre + ".txt";

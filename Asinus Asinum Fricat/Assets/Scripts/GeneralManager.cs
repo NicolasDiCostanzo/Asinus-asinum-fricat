@@ -15,8 +15,12 @@ public class GeneralManager : MonoBehaviour
     public static GeneralManager _instance;
     public static Etat _etat = Etat.Null;
 
+    [SerializeField] int fpsLimit;
+
     void Awake()
     {
+        Application.targetFrameRate = fpsLimit;
+
         _directory = Application.persistentDataPath + _folderName;
 
         if (_instance != null && _instance != this)
@@ -73,6 +77,8 @@ public class GeneralManager : MonoBehaviour
         Creation,
         Modification
     }
+
+    public void AjoutAdresseSauvegardePressePapier() { GUIUtility.systemCopyBuffer = _directory; }
 
     public void QuitterApplication()
     {
