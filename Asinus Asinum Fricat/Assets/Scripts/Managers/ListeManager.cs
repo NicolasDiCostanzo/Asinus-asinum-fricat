@@ -3,46 +3,56 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using static GeneralManager;
 
 public class ListeManager : MonoBehaviour
 {
-    [SerializeField] GameObject motPrefab;
-    [SerializeField] GameObject blocTypeDeMotPrefab;
-    [SerializeField] GameObject inputFieldPrefab;
-    [SerializeField] GameObject titreBlocPrefab;
-    [SerializeField] GameObject boutonSuppression;
-    public static Transform zoneMilieu;
+    [SerializeField] GameObject motPrefab, blocTypeDeMotPrefab, inputFieldPrefab, titreBlocPrefab, boutonSuppression, informationReussiteSauvegarde;
+    [SerializeField] float frequenceSauvegarde;
+    float tempsAvantProchaineSauvegarde;
+
+    Transform canvas;
+    [HideInInspector] public static Transform zoneMilieu;
 
     TMP_InputField titreTMP, themeTMP, commentaireTMP;
 
-    void Start() { 
+    void Start()
+    {
+        canvas = GameObject.Find("Canvas").transform;
+
         zoneMilieu = GameObject.Find("Zone milieu").transform;
 
         titreTMP = GameObject.Find("Titre Input").GetComponent<TMP_InputField>();
         themeTMP = GameObject.Find("Theme Input").GetComponent<TMP_InputField>();
         commentaireTMP = GameObject.Find("Commentaire Input").GetComponent<TMP_InputField>();
 
-        if (etat == Etat.Modification) ChargerListe(_gmListe);
+        if (_etat == Etat.Modification) ChargerListe(_gmListe);
+
+        tempsAvantProchaineSauvegarde = frequenceSauvegarde;
     }
 
-    /// <summary>
-    /// Pour chargement liste existante
-    /// </summary>
-    /// <param name="a_mot"></param>
+    void Update()
+    {
+        tempsAvantProchaineSauvegarde -= Time.deltaTime;
+
+        if (tempsAvantProchaineSauvegarde <= 0)
+        {
+            SauvegarderListe(true);
+            tempsAvantProchaineSauvegarde = frequenceSauvegarde;
+        }
+    }
+
     public void AjoutChamp(Mot a_mot)
     {
         TypeDeMot typeDeMot = a_mot.type;
 
         bool version = a_mot.version;
 
-        if      (typeDeMot == TypeDeMot.Nom)         a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif1)   a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif2)   a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, version);
-        else if (typeDeMot == TypeDeMot.Verbe)       a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, version);
-        else if (typeDeMot == TypeDeMot.Locution)    a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, version);
+        if (typeDeMot == TypeDeMot.Nom) a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
+        else if (typeDeMot == TypeDeMot.Adjectif1) a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
+        else if (typeDeMot == TypeDeMot.Adjectif2) a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, version);
+        else if (typeDeMot == TypeDeMot.Verbe) a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, version);
+        else if (typeDeMot == TypeDeMot.Locution) a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, version);
 
         AjouterInputsField(a_mot, true);
     }
@@ -53,7 +63,7 @@ public class ListeManager : MonoBehaviour
         GameObject bloc = GameObject.Find("Bloc " + typeDeMot);
 
         if (bloc == null) bloc = AjoutBloc(typeDeMot, mot);
-        else              bloc = GameObject.Find("Bloc " + typeDeMot.ToString());
+        else bloc = GameObject.Find("Bloc " + typeDeMot.ToString());
 
         GameObject zoneEntrees = GameObject.Find(bloc.name + "/Zone entrees");
         GameObject instanceMot = Instantiate(motPrefab);
@@ -71,7 +81,7 @@ public class ListeManager : MonoBehaviour
             inputFieldInstance.name = "Inputfield " + typeDeMot + mot.champs[i].ToString();
 
             if (chargementListeExistante) inputFieldInstance.GetComponent<TMP_InputField>().text = mot.champs[i].Value;
-            else                          inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].Key;
+            else inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].Key;
         }
 
         GameObject boutonSuppression_instance = Instantiate(boutonSuppression);
@@ -131,7 +141,7 @@ public class ListeManager : MonoBehaviour
         return GameObject.Find("Bloc " + typeDeMot);
     }
 
-    public void SauvegarderListe()
+    public void SauvegarderListe(bool sauvegardeAutomatique)
     {
         ListeDeMot liste = new ListeDeMot(titreTMP.text, themeTMP.text, commentaireTMP.text);
 
@@ -144,12 +154,30 @@ public class ListeManager : MonoBehaviour
             if (GameObject.Find("Bloc " + typeDeMot))
             {
                 Toggle toggleBoxVersion = GameObject.Find("Bloc " + typeDeMot).GetComponentInChildren<Toggle>();
-
                 EnregistrerMots(typeDeMot, liste, toggleBoxVersion.isOn);
             }
         }
 
-        liste.JsonSauvegarde();
+        bool succesSauvegarde = liste.JsonSauvegarde();
+
+        Debug.Log(succesSauvegarde + " " + sauvegardeAutomatique);
+
+        if (succesSauvegarde && !sauvegardeAutomatique)
+        {
+            GameObject informationReussiteSauvegarde_instance = Instantiate(informationReussiteSauvegarde);
+            informationReussiteSauvegarde_instance.transform.SetParent(canvas, false);
+            informationReussiteSauvegarde_instance.GetComponentInChildren<TextMeshProUGUI>().text = "Sauvegarde réussie !";
+
+            Debug.Log("Sauvegarde réussie");
+        }
+        else if (!succesSauvegarde)
+        {
+            GameObject informationReussiteSauvegarde_instance = Instantiate(informationReussiteSauvegarde);
+            informationReussiteSauvegarde_instance.transform.SetParent(canvas, false);
+            informationReussiteSauvegarde_instance.GetComponentInChildren<TextMeshProUGUI>().text = "La sauvegarde a échoué...";
+
+            Debug.Log("Sauvegarde echouee");
+        }
     }
 
     void EnregistrerMots(TypeDeMot typeDeMot, ListeDeMot a_liste, bool a_version)
@@ -191,22 +219,6 @@ public class ListeManager : MonoBehaviour
                 a_liste.mots.Add(motEnregistre);
             }
         }
-    }
-
-
-    void TestChargerListe()
-    {
-        ListeDeMot _liste = new ListeDeMot("titre", "theme", "commentaire");
-
-        //_liste.mots.Add(new Locution("loc", "trad"));
-        //_liste.mots.Add(new Locution("loc2", "trad2"));
-        //_liste.mots.Add(new Nom("nom", "nom", "genr", "tradcut"));
-        //_liste.mots.Add(new Nom("nom2", "nom2", "genr2", "tradcut2"));
-        //_liste.mots.Add(new Verbe("v", "p2", "inf", "imp", "sup", "traduction"));
-        //_liste.mots.Add(new Verbe("v2", "p22", "inf2", "imp2", "sup2", "traduction2"));
-        //_liste.mots.Add(new Adjectif1("v2", "p22", "inf2", "imp2"));
-
-        ChargerListe(_liste);
     }
 
     public void ChargerListe(ListeDeMot a_liste)

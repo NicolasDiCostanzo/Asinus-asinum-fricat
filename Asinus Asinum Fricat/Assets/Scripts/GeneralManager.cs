@@ -5,30 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GeneralManager : MonoBehaviour
 {
-    public static string folderName = "/Listes/";
-    public static string directory;
+    public static string _folderName = "/Listes/";
+    public static string _directory;
     public static ListeDeMot _gmListe;
 
     [SerializeField] GameObject pausePanel;
     GameObject pausePanel_instance;
 
-    public static GeneralManager instance;
-
-    public static Etat etat = Etat.Null;
-
-
+    public static GeneralManager _instance;
+    public static Etat _etat = Etat.Null;
 
     void Awake()
     {
-        directory = Application.persistentDataPath + folderName;
+        _directory = Application.persistentDataPath + _folderName;
 
-        if (instance != null && instance != this)
+        if (_instance != null && _instance != this)
         {
             DestroyImmediate(gameObject);
             return;
         }
 
-        instance = this;
+        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 

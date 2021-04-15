@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class ClassTest
@@ -11,7 +9,7 @@ public class ClassTest
     public List<string> list = new List<string>();
     public List<Champ> champs = new List<Champ>();
 
-    public KeyValuePair<string, string> kpv = new KeyValuePair<string, string>("tto","caca");
+    public KeyValuePair<string, string> kpv = new KeyValuePair<string, string>("tto", "caca");
 
     public Champ kp = new Champ(GeneralManager.Champs.Masculin, "toutou");
 
@@ -19,7 +17,7 @@ public class ClassTest
     public ClassTest(string titre)
     {
         this.titre = titre;
-        this.list = new List<string>(){ "1", "2", "3" };
+        this.list = new List<string>() { "1", "2", "3" };
 
         champs.Add(new Champ(GeneralManager.Champs.Masculin, "test"));
     }

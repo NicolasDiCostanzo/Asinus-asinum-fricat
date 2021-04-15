@@ -109,13 +109,6 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"Assets/Plugins/Microsoft.Bcl.AsyncInterfaces.dll"
--r:"Assets/Plugins/System.Buffers.dll"
--r:"Assets/Plugins/System.Memory.dll"
--r:"Assets/Plugins/System.Runtime.CompilerServices.Unsafe.dll"
--r:"Assets/Plugins/System.Text.Encodings.Web.dll"
--r:"Assets/Plugins/System.Text.Json.dll"
--r:"Assets/Plugins/System.Threading.Tasks.Extensions.dll"
 -r:"D:/GitHub/Asinus-asinum-fricat/Asinus Asinum Fricat/Library/PackageCache/com.unity.visualscripting@1.5.2/Runtime/VisualScripting.Core/Dependencies/MiscUtil/MiscUtil.dll"
 -r:"D:/GitHub/Asinus-asinum-fricat/Asinus Asinum Fricat/Library/PackageCache/com.unity.visualscripting@1.5.2/Runtime/VisualScripting.Flow/Dependencies/NCalc/Antlr3.Runtime.dll"
 -r:"D:/Unity/Editors/2021.1.0f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -349,6 +342,7 @@
 "Assets/Scripts/Affichage listes/AdapterTailleParent.cs"
 "Assets/Scripts/Affichage listes/AfficherListes.cs"
 "Assets/Scripts/Affichage listes/AssocierStructureListe.cs"
+"Assets/Scripts/Affichage listes/SupprimerListe.cs"
 "Assets/Scripts/AjouterTypeDeMot.cs"
 "Assets/Scripts/ChangerEtat.cs"
 "Assets/Scripts/ChargerScene.cs"
@@ -367,7 +361,6 @@
 "Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
 "Assets/Scripts/SuppressionParent.cs"
-"Assets/SupprimerListe.cs"
 -langversion:8.0
 
 /deterministic

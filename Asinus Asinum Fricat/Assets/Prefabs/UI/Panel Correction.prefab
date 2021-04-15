@@ -421,7 +421,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3429930818425922918, guid: 5bd2da07cc5eab14fad3f8cad4f6b10e, type: 3}
         m_TargetAssemblyTypeName: InterrogationManager, Assembly-CSharp
-        m_MethodName: TirageAuSort
+        m_MethodName: TirageAuSortTransportPublic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

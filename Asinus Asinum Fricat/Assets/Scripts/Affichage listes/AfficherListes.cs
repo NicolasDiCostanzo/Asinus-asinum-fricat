@@ -8,7 +8,7 @@ public class AfficherListes : MonoBehaviour
     private void Start()
     {
         Transform parent = GameObject.Find("Zone affichage").transform;
-        string directory = GeneralManager.directory;
+        string directory = GeneralManager._directory;
 
         if (Directory.Exists(directory))
         {
@@ -18,7 +18,6 @@ public class AfficherListes : MonoBehaviour
                 ListeDeMot _liste = JsonUtility.FromJson<ListeDeMot>(listeJson);
                 AfficherListe(_liste, parent);
             }
-
         }
     }
 

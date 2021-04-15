@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using UnityEngine;
 
 [Serializable]
 public class ListeDeMot
-
 {
     public string titre;
     public string theme;
@@ -21,21 +19,20 @@ public class ListeDeMot
         this.commentaire = commentaire;
     }
 
-    public void JsonSauvegarde()
+    public bool JsonSauvegarde()
     {
-        string directory = GeneralManager.directory;
-
-        var options = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            IncludeFields = true
-        };
-
+        string directory = GeneralManager._directory;
         string json = JsonUtility.ToJson(this, true);
+
 
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
-        File.WriteAllText(directory + titre + ".txt", json);
+        string fileDirectory = GeneralManager._directory + titre + ".txt";
+        File.WriteAllText(fileDirectory, json);
+
+        if (File.Exists(fileDirectory)) return true;
+
+        return false;
     }
 
     public void DebugAfficherListe() { foreach (Mot mot in mots) mot.DebugAfficherMot(); }

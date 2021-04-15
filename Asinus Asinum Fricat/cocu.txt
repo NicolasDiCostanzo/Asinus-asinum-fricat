@@ -1,0 +1,21 @@
+{
+    "titre": "",
+    "theme": "",
+    "commentaire": "",
+    "mots": [
+        {
+            "version": false,
+            "type": 4,
+            "champs": [
+                {
+                    "Key": 11,
+                    "Value": ""
+                },
+                {
+                    "Key": 12,
+                    "Value": ""
+                }
+            ]
+        }
+    ]
+}

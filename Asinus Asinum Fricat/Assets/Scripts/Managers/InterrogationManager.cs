@@ -24,8 +24,6 @@ public class InterrogationManager : MonoBehaviour
         TirageAuSort();
 
         UI_update();
-
-        Debug.Log(gameObject.name);
     }
 
     private void Update() { if (Input.GetKeyDown(KeyCode.Space)) TirageAuSort(); }
@@ -34,17 +32,8 @@ public class InterrogationManager : MonoBehaviour
 
     public void TirageAuSort()
     {
-
-        if (motsFaits < tailleListe)
-        {
-            do { r = Random.Range(0, tailleListe); }
-            while (liste.mots[r].dejaInterroge);
-        }
-        else
-        {
-            AfficherPanelFinDeListe();
-            return;
-        }
+        do { r = Random.Range(0, tailleListe); }
+        while (liste.mots[r].dejaInterroge);
 
         Interroger(liste.mots[r]);
     }
@@ -122,7 +111,6 @@ public class InterrogationManager : MonoBehaviour
 
     void BonneReponse()
     {
-        Debug.Log("bonneReponse");
         motsJustes++;
 
         UI_update();
@@ -131,10 +119,18 @@ public class InterrogationManager : MonoBehaviour
 
     void MauvaiseReponse()
     {
-        Debug.Log("mauvaise reponse");
         UI_update();
-        TirageAuSort();
-        AfficherBonneReponse();
+
+        if (motsFaits == tailleListe)
+        {
+            AfficherPanelFinDeListe();
+            AfficherBonneReponse();
+        }
+        else
+        {
+            AfficherBonneReponse();
+            TirageAuSort();
+        }
     }
 
     void AfficherBonneReponse()
@@ -168,12 +164,6 @@ public class InterrogationManager : MonoBehaviour
     {
         GameObject panelFinDeListe_instance = Instantiate(finDeListePanel);
         panelFinDeListe_instance.transform.SetParent(canvas, false);
-
-        //RectTransform rectTransform = panelFinDeListe_instance.GetComponent<RectTransform>();
-        ////panelFinDeListe_instance.transform.position = new Vector3(rectTransform.sizeDelta.x / 2, rectTransform.sizeDelta.y / 2, 0);
-        //rectTransform.anchorMin = new Vector2(.5f, 0);
-        //rectTransform.anchorMax = new Vector2(.5f, 0);
-        //rectTransform.pivot = new Vector2(.5f, .5f);
     }
 
 }

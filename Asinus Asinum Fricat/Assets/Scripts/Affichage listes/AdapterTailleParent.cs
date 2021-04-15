@@ -4,11 +4,8 @@ using UnityEngine.UI;
 
 public class AdapterTailleParent : MonoBehaviour
 {
-    public void UpdateCanvas()
-    {
-        StartCoroutine(AdapterCanvas());
+    public void UpdateCanvas() { StartCoroutine(AdapterCanvas()); }
 
-    }
     IEnumerator AdapterCanvas()
     {
         yield return new WaitForEndOfFrame();
