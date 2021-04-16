@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static GeneralManager;
 
@@ -16,6 +17,12 @@ public class ListeManager : MonoBehaviour
 
     TMP_InputField titreTMP, themeTMP, commentaireTMP;
 
+    bool versionParDefaut = true, sauvegardeAutomatique;
+
+    Toggle toggle;
+
+    Animator iconeSauvegardeAnimator;
+
     void Start()
     {
         canvas = GameObject.Find("Canvas").transform;
@@ -29,9 +36,25 @@ public class ListeManager : MonoBehaviour
         if (_etat == Etat.Modification) ChargerListe(_gmListe);
 
         tempsAvantProchaineSauvegarde = frequenceSauvegarde;
+
+        toggle = GameObject.Find("Toggle").GetComponent<Toggle>();
+
+        iconeSauvegardeAnimator = GameObject.Find("Icon sauvegarde").GetComponent<Animator>();
     }
 
     void Update()
+    {
+        if (sauvegardeAutomatique) SauvegardeAutomatique();
+    }
+
+    public void ChangerValeurSauvgardeAutomatique() {
+        bool toggleValue = toggle.isOn;
+
+        sauvegardeAutomatique = toggleValue;
+        titreTMP.interactable = !toggleValue;
+    }
+
+    void SauvegardeAutomatique()
     {
         tempsAvantProchaineSauvegarde -= Time.deltaTime;
 
@@ -39,6 +62,7 @@ public class ListeManager : MonoBehaviour
         {
             SauvegarderListe(true);
             tempsAvantProchaineSauvegarde = frequenceSauvegarde;
+            iconeSauvegardeAnimator.enabled = true;
         }
     }
 
@@ -48,11 +72,11 @@ public class ListeManager : MonoBehaviour
 
         bool version = a_mot.version;
 
-        if (typeDeMot == TypeDeMot.Nom) a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif1) a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif2) a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, version);
-        else if (typeDeMot == TypeDeMot.Verbe) a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, version);
-        else if (typeDeMot == TypeDeMot.Locution) a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, version);
+        if      (typeDeMot == TypeDeMot.Nom)        a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
+        else if (typeDeMot == TypeDeMot.Adjectif1)  a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
+        else if (typeDeMot == TypeDeMot.Adjectif2)  a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, version);
+        else if (typeDeMot == TypeDeMot.Verbe)      a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, version);
+        else if (typeDeMot == TypeDeMot.Locution)   a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, version);
 
         AjouterInputsField(a_mot, true);
     }
@@ -82,6 +106,8 @@ public class ListeManager : MonoBehaviour
 
             if (chargementListeExistante) inputFieldInstance.GetComponent<TMP_InputField>().text = mot.champs[i].Value;
             else inputFieldInstance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].Key;
+
+            if (i == 0) EventSystem.current.SetSelectedGameObject(inputFieldInstance.gameObject, null); //Focus sur le premier champ d'inputfiel créé
         }
 
         GameObject boutonSuppression_instance = Instantiate(boutonSuppression);
@@ -98,19 +124,19 @@ public class ListeManager : MonoBehaviour
         switch (typeDeMot)
         {
             case TypeDeMot.Nom:
-                mot = new Nom("", "", "", "", false);
+                mot = new Nom("", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Adjectif1:
-                mot = new Adjectif1("", "", "", "", false);
+                mot = new Adjectif1("", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Adjectif2:
-                mot = new Adjectif2("", "", "", "", "", false);
+                mot = new Adjectif2("", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Verbe:
-                mot = new Verbe("", "", "", "", "", "", false);
+                mot = new Verbe("", "", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Locution:
-                mot = new Locution("", "", false);
+                mot = new Locution("", "", versionParDefaut);
                 break;
         }
 
@@ -194,25 +220,25 @@ public class ListeManager : MonoBehaviour
             switch (typeDeMot)
             {
                 case TypeDeMot.Nom:
-                    motEnregistre = new Nom(champs[0], champs[1], champs[2], champs[3], false);
+                    motEnregistre = new Nom(champs[0], champs[1], champs[2], champs[3], a_version);
                     break;
                 case TypeDeMot.Adjectif1:
-                    motEnregistre = new Adjectif1(champs[0], champs[1], champs[2], champs[3], false);
+                    motEnregistre = new Adjectif1(champs[0], champs[1], champs[2], champs[3], a_version);
                     break;
                 case TypeDeMot.Adjectif2:
-                    motEnregistre = new Adjectif2(champs[0], champs[1], champs[2], champs[3], champs[4], false);
+                    motEnregistre = new Adjectif2(champs[0], champs[1], champs[2], champs[3], champs[4], a_version);
                     break;
                 case TypeDeMot.Verbe:
-                    motEnregistre = new Verbe(champs[0], champs[1], champs[2], champs[3], champs[4], champs[5], false);
+                    motEnregistre = new Verbe(champs[0], champs[1], champs[2], champs[3], champs[4], champs[5], a_version);
                     break;
                 case TypeDeMot.Locution:
-                    motEnregistre = new Locution(champs[0], champs[1], false);
+                    motEnregistre = new Locution(champs[0], champs[1], a_version);
                     break;
             }
 
             if (motEnregistre != null)
             {
-                motEnregistre.version = a_version;
+                //motEnregistre.version = a_version;
                 motEnregistre.type = typeDeMot;
                 a_liste.mots.Add(motEnregistre);
             }

@@ -16,7 +16,17 @@ public class InputNavigator : MonoBehaviour
             Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight();
 
             if (next != null)
-                if (next.GetComponentInChildren<TMP_InputField>()) system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            {
+                if (next.GetComponentInChildren<TMP_InputField>())
+                {
+                    system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+                }
+                else
+                {
+                    if (next.transform.parent.parent.name == "Zone entrees") next.transform.parent.parent.parent.GetComponentInChildren<AjouterTypeDeMot>().AjouterChamps();
+                } 
+            }
+
         }
     }
 }
