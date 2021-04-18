@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Class\ListeDeMot.cs" />
+    <Compile Include="Assets\Scripts\DesactiveAnimator.cs" />
     <Compile Include="Assets\Scripts\ChargerScene.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\SupprimerListe.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\AdapterTailleParent.cs" />
@@ -72,14 +73,14 @@
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Adjectif1.cs" />
     <Compile Include="Assets\Memo.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\AfficherListes.cs" />
-    <Compile Include="Assets\Scripts\InputNavigator.cs" />
+    <Compile Include="Assets\Scripts\ShortcutsForInputsFields.cs" />
     <Compile Include="Assets\Scripts\Managers\ListeManager.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Verbe.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Adjectif2.cs" />
     <Compile Include="Assets\Scripts\SuppressionParent.cs" />
     <Compile Include="Assets\Scripts\Managers\InterrogationManager.cs" />
     <Compile Include="Assets\Scripts\DestroyThisGameobject.cs" />
-    <Compile Include="Assets\Scripts\DesactiveAnimator.cs" />
+    <Compile Include="Assets\Scripts\TirageAuSortInstanceInterrogationManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

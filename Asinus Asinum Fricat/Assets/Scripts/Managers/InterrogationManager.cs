@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static GeneralManager;
 
 public class InterrogationManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class InterrogationManager : MonoBehaviour
     Transform canvas;
     ListeDeMot liste;
 
-    int tailleListe = 0, motsFaits = 0, motsJustes = 0, r = 0;
+    public int tailleListe = 0, motsFaits = 0, motsJustes = 0, r = 0;
 
     GameObject container;
 
@@ -28,14 +29,23 @@ public class InterrogationManager : MonoBehaviour
 
     public void TirageAuSort()
     {
-        do { r = Random.Range(0, tailleListe); }
+        do r = Random.Range(0, tailleListe);
         while (liste.mots[r].dejaInterroge);
 
         Interroger(liste.mots[r]);
+        Debug.Log("tirage au sort if");
+        //else
+        //{
+        //    AfficherPanelFinDeListe();
+        //    Debug.Log("else");
+        //}
+
     }
 
     void Interroger(Mot a_mot)
     {
+        Debug.Log("interroger");
+
         motsFaits++;
         ViderContainer();
 
@@ -59,7 +69,7 @@ public class InterrogationManager : MonoBehaviour
                 }
                 else
                 {
-                    tmpInputField.text = "Entrer " + mot.champs[i].Key.ToString();
+                    tmpInputField.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].Key.ToString();
                 }
             }
             else if (!mot.version)
@@ -71,7 +81,7 @@ public class InterrogationManager : MonoBehaviour
                 }
                 else
                 {
-                    tmpInputField.text = "Entrer " + mot.champs[i].Key.ToString();
+                    tmpInputField.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer " + mot.champs[i].Key.ToString();
                 }
 
             }
@@ -98,7 +108,6 @@ public class InterrogationManager : MonoBehaviour
                 MauvaiseReponse();
                 return;
             }
-
             i++;
         }
 
@@ -108,27 +117,25 @@ public class InterrogationManager : MonoBehaviour
     void BonneReponse()
     {
         motsJustes++;
-
-        UI_update();
-
         if (motsFaits < tailleListe) TirageAuSort();
         else AfficherPanelFinDeListe();
+        UI_update();
     }
 
     void MauvaiseReponse()
     {
         UI_update();
+        AfficherBonneReponse();
 
-        if (motsFaits == tailleListe)
-        {
-            AfficherPanelFinDeListe();
-            AfficherBonneReponse();
-        }
-        else
-        {
-            AfficherBonneReponse();
-            TirageAuSort();
-        }
+        //if (motsFaits == tailleListe)
+        //{
+        //    AfficherPanelFinDeListe();
+        //    AfficherBonneReponse();
+        //}
+        //else
+        //{
+        //    AfficherBonneReponse();
+        //}
     }
 
     void AfficherBonneReponse()
@@ -138,6 +145,9 @@ public class InterrogationManager : MonoBehaviour
 
         Mot mot = liste.mots[r];
 
+        afficherBonneReponse_instance.transform.GetComponentInChildren<GridLayoutGroup>().cellSize = inputFieldPrefab.transform.GetComponent<RectTransform>().sizeDelta;
+
+
         for (int i = 0; i < mot.champs.Count; i++)
         {
             GameObject inputFieldInstance = Instantiate(inputFieldPrefab);
@@ -146,6 +156,7 @@ public class InterrogationManager : MonoBehaviour
             inputFieldInstance.name = "Inputfield " + mot.type + mot.champs[i].ToString();
 
             TMP_InputField tmpInputField = inputFieldInstance.GetComponent<TMP_InputField>();
+
 
             tmpInputField.text = mot.champs[i].Value;
             tmpInputField.interactable = false;
@@ -158,7 +169,7 @@ public class InterrogationManager : MonoBehaviour
         motsFaits_tmp.text = motsJustes + "/" + motsFaits;
     }
 
-    void AfficherPanelFinDeListe()
+    public void AfficherPanelFinDeListe()
     {
         GameObject panelFinDeListe_instance = Instantiate(finDeListePanel);
         panelFinDeListe_instance.transform.SetParent(canvas, false);

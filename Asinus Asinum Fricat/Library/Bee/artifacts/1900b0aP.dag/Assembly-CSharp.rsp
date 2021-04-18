@@ -294,6 +294,7 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
+"Assets/Memo.cs"
 "Assets/Scripts/Affichage listes/AdapterTailleParent.cs"
 "Assets/Scripts/Affichage listes/AfficherListes.cs"
 "Assets/Scripts/Affichage listes/AssocierStructureListe.cs"
@@ -302,7 +303,7 @@
 "Assets/Scripts/ChangerEtat.cs"
 "Assets/Scripts/ChargerScene.cs"
 "Assets/Scripts/Class/Button_Creer.cs"
-"Assets/Scripts/Class/ClassTest.cs"
+"Assets/Scripts/Class/Champ.cs"
 "Assets/Scripts/Class/Enfants de mot/Adjectif1.cs"
 "Assets/Scripts/Class/Enfants de mot/Adjectif2.cs"
 "Assets/Scripts/Class/Enfants de mot/Locution.cs"
@@ -310,12 +311,14 @@
 "Assets/Scripts/Class/Enfants de mot/Verbe.cs"
 "Assets/Scripts/Class/ListeDeMot.cs"
 "Assets/Scripts/Class/Mot.cs"
+"Assets/Scripts/DesactiveAnimator.cs"
 "Assets/Scripts/DestroyThisGameobject.cs"
 "Assets/Scripts/GeneralManager.cs"
 "Assets/Scripts/InputNavigator.cs"
 "Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
 "Assets/Scripts/SuppressionParent.cs"
+"Assets/Scripts/TirageAuSortInstanceInterrogationManager.cs"
 -langversion:8.0
 
 /deterministic

@@ -359,10 +359,11 @@
 "Assets/Scripts/DesactiveAnimator.cs"
 "Assets/Scripts/DestroyThisGameobject.cs"
 "Assets/Scripts/GeneralManager.cs"
-"Assets/Scripts/InputNavigator.cs"
 "Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
+"Assets/Scripts/ShortcutsForInputsFields.cs"
 "Assets/Scripts/SuppressionParent.cs"
+"Assets/Scripts/TirageAuSortInstanceInterrogationManager.cs"
 -langversion:8.0
 
 /deterministic
