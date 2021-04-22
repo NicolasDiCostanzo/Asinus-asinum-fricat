@@ -6,7 +6,7 @@ using static GeneralManager;
 public class InterrogationManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI motsAFaire_tmp, motsFaits_tmp;
-    [SerializeField] GameObject inputFieldPrefab, affichageBonneReponse, finDeListePanel;
+    [SerializeField] GameObject inputFieldPrefab, affichageBonneReponse, finDeListePanel, textPrefab;
     Transform canvas;
     ListeDeMot liste;
 
@@ -33,19 +33,10 @@ public class InterrogationManager : MonoBehaviour
         while (liste.mots[r].dejaInterroge);
 
         Interroger(liste.mots[r]);
-        Debug.Log("tirage au sort if");
-        //else
-        //{
-        //    AfficherPanelFinDeListe();
-        //    Debug.Log("else");
-        //}
-
     }
 
     void Interroger(Mot a_mot)
     {
-        Debug.Log("interroger");
-
         motsFaits++;
         ViderContainer();
 
@@ -126,16 +117,6 @@ public class InterrogationManager : MonoBehaviour
     {
         UI_update();
         AfficherBonneReponse();
-
-        //if (motsFaits == tailleListe)
-        //{
-        //    AfficherPanelFinDeListe();
-        //    AfficherBonneReponse();
-        //}
-        //else
-        //{
-        //    AfficherBonneReponse();
-        //}
     }
 
     void AfficherBonneReponse()
@@ -145,22 +126,18 @@ public class InterrogationManager : MonoBehaviour
 
         Mot mot = liste.mots[r];
 
-        afficherBonneReponse_instance.transform.GetComponentInChildren<GridLayoutGroup>().cellSize = inputFieldPrefab.transform.GetComponent<RectTransform>().sizeDelta;
-
+        afficherBonneReponse_instance.transform.GetComponentInChildren<GridLayoutGroup>().cellSize = textPrefab.transform.GetComponent<RectTransform>().sizeDelta;
 
         for (int i = 0; i < mot.champs.Count; i++)
         {
-            GameObject inputFieldInstance = Instantiate(inputFieldPrefab);
+            GameObject textPrefab_instance = Instantiate(textPrefab);
 
-            inputFieldInstance.transform.SetParent(afficherBonneReponse_instance.transform.GetChild(0), false);
-            inputFieldInstance.name = "Inputfield " + mot.type + mot.champs[i].ToString();
-
-            TMP_InputField tmpInputField = inputFieldInstance.GetComponent<TMP_InputField>();
-
-
-            tmpInputField.text = mot.champs[i].Value;
-            tmpInputField.interactable = false;
+            textPrefab_instance.transform.SetParent(afficherBonneReponse_instance.transform.GetChild(0), false);
+            textPrefab_instance.name = mot.type + " " + mot.champs[i].ToString();
+            textPrefab_instance.GetComponent<TextMeshProUGUI>().text = mot.champs[i].Value;
         }
+
+
     }
 
     void UI_update()

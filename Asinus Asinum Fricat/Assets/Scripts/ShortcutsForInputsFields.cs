@@ -17,10 +17,8 @@ public class ShortcutsForInputsFields : MonoBehaviour
 
             if (selectable.gameObject != null)
             {
-                Debug.Log(selectable.gameObject);
                 if (Input.GetKeyDown(KeyCode.Tab)) AjouterLigne(selectable);
                 else SupprimerLigne(selectable);
-
             }
         }
     }

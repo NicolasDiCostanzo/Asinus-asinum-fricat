@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 6214143953102910511}
   - component: {fileID: -7666309404446436379}
   - component: {fileID: 4206953809026811163}
-  - component: {fileID: 682687525714264853}
+  - component: {fileID: 6727771342035374542}
   m_Layer: 5
   m_Name: Liste
   m_TagString: Untagged
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1319fb082bfd1c42a2080cbe908b2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &682687525714264853
+--- !u!114 &6727771342035374542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -569,9 +569,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5525045863975963693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a94f028bb65b14795d827dbbe47e56, type: 3}
+  m_Script: {fileID: 11500000, guid: 402a7ce8c9fb51a4ca5576de399176b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelConfirmation: {fileID: 1404704864052348319, guid: 22a554b4f72072d449707bbc36ca5ef5, type: 3}
 --- !u!1 &5525045865071031098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,9 +1041,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 682687525714264853}
-        m_TargetAssemblyTypeName: SupprimerListe, Assembly-CSharp
-        m_MethodName: f_SupprimerListe
+      - m_Target: {fileID: 6727771342035374542}
+        m_TargetAssemblyTypeName: InstantierPanelConfirmation, Assembly-CSharp
+        m_MethodName: InstantierPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
