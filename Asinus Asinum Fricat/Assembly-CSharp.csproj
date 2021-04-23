@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Class\ListeDeMot.cs" />
+    <Compile Include="Assets\AdapterTailleContainerInputField.cs" />
     <Compile Include="Assets\Scripts\DesactiveAnimator.cs" />
     <Compile Include="Assets\Scripts\ChargerScene.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\SupprimerListe.cs" />
@@ -82,7 +83,6 @@
     <Compile Include="Assets\Scripts\SuppressionParent.cs" />
     <Compile Include="Assets\Scripts\Managers\InterrogationManager.cs" />
     <Compile Include="Assets\Scripts\DestroyThisGameobject.cs" />
-    <Compile Include="Assets\AdapterTailleContainerInputField.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
