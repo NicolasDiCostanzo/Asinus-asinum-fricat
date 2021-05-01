@@ -9,15 +9,18 @@ public class Mot
     public bool version;
     public TypeDeMot type;
 
+    public string commentaire;
     public bool dejaInterroge { get; set; }
     public List<Champ> champs = new List<Champ>();
 
-    public Mot(string a_traduction, bool version)
+    public Mot(string a_traduction, string a_commentaire, bool version)
     {
         dejaInterroge = false;
-        champs.Add(new Champ(Champs.Traduction, a_traduction));
 
         this.version = version;
+        this.commentaire = a_commentaire;
+
+        champs.Add(new Champ(Champs.Traduction, a_traduction));
     }
 
     public Mot() { dejaInterroge = false; }
@@ -28,7 +31,7 @@ public class Mot
 
         for (int i = 0; i < champs.Count; i++) debugAAfficher += champs[i].Key + "->" + champs[i].Value + "\n";
 
-        Debug.Log(debugAAfficher + "Version : " + version + " ");
+        Debug.Log(debugAAfficher + "Version : " + version + "\nCommentaire : " + commentaire);
     }
 
 }

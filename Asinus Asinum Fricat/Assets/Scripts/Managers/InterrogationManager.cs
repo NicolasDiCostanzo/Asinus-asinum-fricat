@@ -137,6 +137,12 @@ public class InterrogationManager : MonoBehaviour
             textPrefab_instance.GetComponent<TextMeshProUGUI>().text = mot.champs[i].Value;
         }
 
+        GameObject commentaire_instance = Instantiate(textPrefab);
+        commentaire_instance.transform.SetParent(afficherBonneReponse_instance.transform.GetChild(0), false);
+        commentaire_instance.GetComponent<TextMeshProUGUI>().text = mot.commentaire;
+        commentaire_instance.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
+
+
 
     }
 

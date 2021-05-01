@@ -294,6 +294,7 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
+"Assets/AdapterTailleContainerInputField.cs"
 "Assets/Memo.cs"
 "Assets/Scripts/Affichage listes/AdapterTailleParent.cs"
 "Assets/Scripts/Affichage listes/AfficherListes.cs"
@@ -314,11 +315,13 @@
 "Assets/Scripts/DesactiveAnimator.cs"
 "Assets/Scripts/DestroyThisGameobject.cs"
 "Assets/Scripts/GeneralManager.cs"
-"Assets/Scripts/InputNavigator.cs"
+"Assets/Scripts/InstantierPanelConfirmation.cs"
 "Assets/Scripts/Managers/InterrogationManager.cs"
 "Assets/Scripts/Managers/ListeManager.cs"
+"Assets/Scripts/ShortcutsForInputsFields.cs"
 "Assets/Scripts/SuppressionParent.cs"
 "Assets/Scripts/TirageAuSortInstanceInterrogationManager.cs"
+"Assets/TailleRelativeAuxEnfants.cs"
 -langversion:8.0
 
 /deterministic

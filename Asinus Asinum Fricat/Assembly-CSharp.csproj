@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Affichage listes\AssocierStructureListe.cs" />
     <Compile Include="Assets\Scripts\GeneralManager.cs" />
     <Compile Include="Assets\Scripts\Class\Enfants de mot\Adjectif1.cs" />
+    <Compile Include="Assets\TailleRelativeAuxEnfants.cs" />
     <Compile Include="Assets\Memo.cs" />
     <Compile Include="Assets\Scripts\Affichage listes\AfficherListes.cs" />
     <Compile Include="Assets\Scripts\InstantierPanelConfirmation.cs" />

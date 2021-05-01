@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AdapterTailleContainerInputField : MonoBehaviour
 {
+    [SerializeField] float minInputFieldHeight;
     public void AdapterTaillePublicTransport() { StartCoroutine(AdapterCanvas()); }
 
     IEnumerator AdapterCanvas()
@@ -12,9 +13,13 @@ public class AdapterTailleContainerInputField : MonoBehaviour
 
         if (GetComponentInParent<AdapterTailleParent>())
         {
+            Debug.Log(transform.parent.name);
             transform.parent.GetComponent<RectTransform>().sizeDelta = TaillePlusGrandInputField();
             GetComponentInParent<AdapterTailleParent>().UpdateCanvas();
         }
+
+        Vector2 inputFieldSize = GetComponent<TMP_InputField>().GetComponent<RectTransform>().sizeDelta;
+        if (inputFieldSize.y < minInputFieldHeight) GetComponent<TMP_InputField>().GetComponent<RectTransform>().sizeDelta = new Vector2(inputFieldSize.x, minInputFieldHeight);
     }
 
     Vector2 TaillePlusGrandInputField()
@@ -28,6 +33,8 @@ public class AdapterTailleContainerInputField : MonoBehaviour
                 if (child.GetComponent<TMP_InputField>().GetComponent<RectTransform>().sizeDelta.y > GetComponent<RectTransform>().sizeDelta.y) return child.GetComponent<TMP_InputField>().GetComponent<RectTransform>().sizeDelta;
             }
         }
+        Debug.Log(GetComponent<RectTransform>().sizeDelta);
+
         return GetComponent<RectTransform>().sizeDelta;
     }
 }

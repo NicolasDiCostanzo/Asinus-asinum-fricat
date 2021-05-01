@@ -9,6 +9,8 @@ using static GeneralManager;
 public class ListeManager : MonoBehaviour
 {
     [SerializeField] GameObject motPrefab, blocTypeDeMotPrefab, inputFieldPrefab, titreBlocPrefab, boutonSuppression, informationReussiteSauvegarde;
+
+    [Tooltip("En secondes")]
     [SerializeField] float frequenceSauvegarde;
     float tempsAvantProchaineSauvegarde;
 
@@ -72,11 +74,11 @@ public class ListeManager : MonoBehaviour
 
         bool version = a_mot.version;
 
-        if      (typeDeMot == TypeDeMot.Nom)        a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif1)  a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, version);
-        else if (typeDeMot == TypeDeMot.Adjectif2)  a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, version);
-        else if (typeDeMot == TypeDeMot.Verbe)      a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, version);
-        else if (typeDeMot == TypeDeMot.Locution)   a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, version);
+        if      (typeDeMot == TypeDeMot.Nom)        a_mot = new Nom(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.commentaire, version);
+        else if (typeDeMot == TypeDeMot.Adjectif1)  a_mot = new Adjectif1(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.commentaire, version);
+        else if (typeDeMot == TypeDeMot.Adjectif2)  a_mot = new Adjectif2(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.commentaire, version);
+        else if (typeDeMot == TypeDeMot.Verbe)      a_mot = new Verbe(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.champs[2].Value, a_mot.champs[3].Value, a_mot.champs[4].Value, a_mot.champs[5].Value, a_mot.commentaire, version);
+        else if (typeDeMot == TypeDeMot.Locution)   a_mot = new Locution(a_mot.champs[0].Value, a_mot.champs[1].Value, a_mot.commentaire, version);
 
         AjouterInputsField(a_mot, true);
     }
@@ -100,7 +102,7 @@ public class ListeManager : MonoBehaviour
         for (int i = 0; i < mot.champs.Count; i++)
         {
             GameObject inputFieldInstance = Instantiate(inputFieldPrefab);
-            inputFieldInstance.transform.SetParent(instanceMot.transform, false);
+            inputFieldInstance.transform.SetParent(instanceMot.transform.GetChild(0), false);
 
             inputFieldInstance.name = "Inputfield " + typeDeMot + mot.champs[i].ToString();
 
@@ -111,7 +113,13 @@ public class ListeManager : MonoBehaviour
         }
 
         GameObject boutonSuppression_instance = Instantiate(boutonSuppression);
-        boutonSuppression_instance.transform.SetParent(instanceMot.transform, false);
+        boutonSuppression_instance.transform.SetParent(instanceMot.transform.GetChild(0), false);
+
+        GameObject commentaireInputField_instance = Instantiate(inputFieldPrefab);
+        commentaireInputField_instance.transform.SetParent(instanceMot.transform.GetChild(1), false);
+
+        if (chargementListeExistante) commentaireInputField_instance.GetComponentInChildren<TMP_InputField>().text = mot.commentaire;
+        else commentaireInputField_instance.GetComponentInChildren<TextMeshProUGUI>().text = "Entrer commentaire...";
 
 
         zoneEntrees.GetComponent<AdapterTailleParent>().UpdateCanvas();
@@ -124,19 +132,19 @@ public class ListeManager : MonoBehaviour
         switch (typeDeMot)
         {
             case TypeDeMot.Nom:
-                mot = new Nom("", "", "", "", versionParDefaut);
+                mot = new Nom("", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Adjectif1:
-                mot = new Adjectif1("", "", "", "", versionParDefaut);
+                mot = new Adjectif1("", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Adjectif2:
-                mot = new Adjectif2("", "", "", "", "", versionParDefaut);
+                mot = new Adjectif2("", "", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Verbe:
-                mot = new Verbe("", "", "", "", "", "", versionParDefaut);
+                mot = new Verbe("", "", "", "", "", "", "", versionParDefaut);
                 break;
             case TypeDeMot.Locution:
-                mot = new Locution("", "", versionParDefaut);
+                mot = new Locution("", "", "", versionParDefaut);
                 break;
         }
 
@@ -191,16 +199,12 @@ public class ListeManager : MonoBehaviour
             GameObject informationReussiteSauvegarde_instance = Instantiate(informationReussiteSauvegarde);
             informationReussiteSauvegarde_instance.transform.SetParent(canvas, false);
             informationReussiteSauvegarde_instance.GetComponentInChildren<TextMeshProUGUI>().text = "Sauvegarde réussie !";
-
-            Debug.Log("Sauvegarde réussie");
         }
         else if (!succesSauvegarde)
         {
             GameObject informationReussiteSauvegarde_instance = Instantiate(informationReussiteSauvegarde);
             informationReussiteSauvegarde_instance.transform.SetParent(canvas, false);
             informationReussiteSauvegarde_instance.GetComponentInChildren<TextMeshProUGUI>().text = "La sauvegarde a échoué...";
-
-            Debug.Log("Sauvegarde echouee");
         }
     }
 
@@ -212,33 +216,38 @@ public class ListeManager : MonoBehaviour
         {
             List<string> champs = new List<string>();
 
-            for (int i = 0; i < mot.transform.childCount - 1; i++)
-                champs.Add(mot.transform.GetChild(i).GetComponent<TMP_InputField>().text);
+            for (int i = 0; i < mot.transform.GetChild(0).childCount - 1; i++)
+            {
+                string texteAAjouter = mot.transform.GetChild(0).GetChild(i).GetComponent<TMP_InputField>().text;
+                champs.Add(texteAAjouter);
+            }
 
             Mot motEnregistre = null;
+
+            string commentaire = mot.transform.GetChild(1).GetComponentInChildren<TMP_InputField>().text;
+
 
             switch (typeDeMot)
             {
                 case TypeDeMot.Nom:
-                    motEnregistre = new Nom(champs[0], champs[1], champs[2], champs[3], a_version);
+                    motEnregistre = new Nom(champs[0], champs[1], champs[2], champs[3], commentaire, a_version);
                     break;
                 case TypeDeMot.Adjectif1:
-                    motEnregistre = new Adjectif1(champs[0], champs[1], champs[2], champs[3], a_version);
+                    motEnregistre = new Adjectif1(champs[0], champs[1], champs[2], champs[3], commentaire, a_version);
                     break;
                 case TypeDeMot.Adjectif2:
-                    motEnregistre = new Adjectif2(champs[0], champs[1], champs[2], champs[3], champs[4], a_version);
+                    motEnregistre = new Adjectif2(champs[0], champs[1], champs[2], champs[3], champs[4], commentaire, a_version);
                     break;
                 case TypeDeMot.Verbe:
-                    motEnregistre = new Verbe(champs[0], champs[1], champs[2], champs[3], champs[4], champs[5], a_version);
+                    motEnregistre = new Verbe(champs[0], champs[1], champs[2], champs[3], champs[4], champs[5], commentaire, a_version);
                     break;
                 case TypeDeMot.Locution:
-                    motEnregistre = new Locution(champs[0], champs[1], a_version);
+                    motEnregistre = new Locution(champs[0], champs[1], commentaire, a_version);
                     break;
             }
 
             if (motEnregistre != null)
             {
-                //motEnregistre.version = a_version;
                 motEnregistre.type = typeDeMot;
                 a_liste.mots.Add(motEnregistre);
             }

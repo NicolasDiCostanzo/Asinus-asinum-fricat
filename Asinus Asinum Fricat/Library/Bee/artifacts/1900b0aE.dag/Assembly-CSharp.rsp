@@ -366,6 +366,7 @@
 "Assets/Scripts/ShortcutsForInputsFields.cs"
 "Assets/Scripts/SuppressionParent.cs"
 "Assets/Scripts/TirageAuSortInstanceInterrogationManager.cs"
+"Assets/TailleRelativeAuxEnfants.cs"
 -langversion:8.0
 
 /deterministic

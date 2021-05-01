@@ -415,7 +415,6 @@ GameObject:
   - component: {fileID: 1404704864052348314}
   - component: {fileID: 1404704864052348317}
   - component: {fileID: 9071058382262780942}
-  - component: {fileID: 5461379291156682080}
   - component: {fileID: 1912292708493970426}
   m_Layer: 5
   m_Name: Confirmation suppression de liste panel
@@ -494,23 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c63b805d253fbc4a9d46d31ba4e0d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5461379291156682080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404704864052348319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae53d66b12e8f84da259755c6992905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listeAssociee:
-    titre: 
-    theme: 
-    commentaire: 
-    mots: []
 --- !u!114 &1912292708493970426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +505,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a94f028bb65b14795d827dbbe47e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listeAssociee:
+    titre: 
+    theme: 
+    commentaire: 
+    mots: []
+  listeGO: {fileID: 0}
 --- !u!1 &1404704864821882046
 GameObject:
   m_ObjectHideFlags: 0
